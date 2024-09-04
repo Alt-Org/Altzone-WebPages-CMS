@@ -1,0 +1,71 @@
+services:
+  strapi:
+    container_name: strapi
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      HOST: 0.0.0.0
+      PORT: 1337
+      APP_KEYS: ${APP_KEYS}
+      API_TOKEN_SALT: ${API_TOKEN_SALT}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+      TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT}
+      NODE_ENV: development
+      STRAPI_TELEMETRY_DISABLED: true
+      DATABASE_SSL: false
+      DATABASE_HOST: strapi_db
+      DATABASE_PORT: 5432
+      DATABASE_NAME: strapi_db
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_CLIENT: postgres
+    volumes:
+      - ./config:/opt/app/config
+      - ./src:/opt/app/src
+      - ./package.json:/opt/package.json
+      - ./package-lock.json:/opt/package-lock.json
+      - ./.env:/opt/app/.env
+      - ./public/uploads:/opt/app/public/uploads
+    ports:
+      - '1337:1337'
+    networks:
+      - strapi
+      - strapi_db
+    depends_on:
+      - strapi_db
+    command: ["npm", "run", "develop"]
+
+  strapi_db:
+    container_name: strapi_db
+    restart: unless-stopped
+    image: postgres:14.5-alpine
+    env_file: .env
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: strapi_db
+    volumes:
+      - strapi:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    networks:
+      - strapi_db
+
+networks:
+  backend:
+    name: altzone_backend
+  db:
+    name: altzone_db
+  swagger:
+    name: altzone_swagger
+  strapi:
+    name: strapi
+  strapi_db:
+    name: strapi_db
+
+volumes:
+  altzone_db:
+  strapi:
