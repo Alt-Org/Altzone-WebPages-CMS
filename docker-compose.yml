@@ -1,3 +1,4 @@
+#only for local development, the server has its own implementation
 services:
   strapi:
     container_name: strapi
