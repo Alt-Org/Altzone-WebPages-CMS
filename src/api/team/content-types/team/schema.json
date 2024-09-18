@@ -71,6 +71,15 @@
         }
       },
       "type": "string"
+    },
+    "Linkedin": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "string",
+      "unique": false
     }
   }
 }
