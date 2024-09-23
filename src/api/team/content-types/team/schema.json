@@ -80,6 +80,14 @@
       },
       "type": "string",
       "unique": false
+    },
+    "Task": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
     }
   }
 }
