@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "teams",
+  "collectionName": "departments",
   "info": {
-    "singularName": "team",
-    "pluralName": "teams",
-    "displayName": "Team",
+    "singularName": "department",
+    "pluralName": "departments",
+    "displayName": "Department",
     "description": ""
   },
   "options": {
@@ -16,7 +16,7 @@
     }
   },
   "attributes": {
-    "Team": {
+    "Department": {
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -28,7 +28,7 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::member.member",
-      "inversedBy": "teams"
+      "inversedBy": "departments"
     }
   }
 }
