@@ -94,17 +94,17 @@
       },
       "type": "string"
     },
-    "teams": {
+    "department": {
       "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::team.team",
-      "mappedBy": "member"
-    },
-    "departments": {
-      "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToOne",
       "target": "api::department.department",
-      "mappedBy": "member"
+      "inversedBy": "members"
+    },
+    "team": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::team.team",
+      "inversedBy": "members"
     }
   }
 }

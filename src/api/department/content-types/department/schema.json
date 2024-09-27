@@ -24,10 +24,16 @@
       },
       "type": "string"
     },
-    "member": {
+    "members": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::member.member",
+      "mappedBy": "department"
+    },
+    "team": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::member.member",
+      "target": "api::team.team",
       "inversedBy": "departments"
     }
   }
