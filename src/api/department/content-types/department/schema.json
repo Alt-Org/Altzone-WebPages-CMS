@@ -16,7 +16,7 @@
     }
   },
   "attributes": {
-    "Department": {
+    "Name": {
       "pluginOptions": {
         "i18n": {
           "localized": true
